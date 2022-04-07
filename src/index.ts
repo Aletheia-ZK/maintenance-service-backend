@@ -1,6 +1,5 @@
-import { getReputationHolders } from './reputations/reputation_1'
-import { buildMerkleTree } from './tree_helper_functions'
-
+import { getReputationHolders } from './reputations/reputation1'
+import { buildMerkleTree } from './treeHelperFunctions'
 
 async function maintainReputation1(){
     console.log("Check for updates on reputation 1 merkle tree...")
