@@ -1,5 +1,3 @@
-import dotenv from 'dotenv'
-dotenv.config({ path: `.env.${process.env.NODE_ENV}` })
 import { getReputationHolders } from './reputations/reputation_1'
 import { buildMerkleTree } from './tree_helper_functions'
 
