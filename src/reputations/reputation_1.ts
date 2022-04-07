@@ -5,6 +5,7 @@ import { TokenData, TokenMetaData } from '../types'
 
 // Reputation 1
 // Criteria: All pub addresses who currently own the ZKU Supporter NFT
+// Covalent API gives reliant results after 10 mins on Harmony
 
 export async function getReputationHolders(): Promise<string[]> {
 	const contractAddress = process.env. REPUTATION_1_CONTRACT_ADDRESS!
@@ -22,16 +23,3 @@ export async function getReputationHolders(): Promise<string[]> {
 
 	return reputationHolders
 }
-
-// Calculate merkle tree
-// Check if root changes: if yes, update root in smart contract
-
-// async function main() {
-//     const exampleContract = process.env.EXAMPLE_CONTRACT!
-//     try {
-//         // console.log(tokenMetaInfo)
-
-//     } catch (error) {
-//         console.log(error)
-//     }
-// }

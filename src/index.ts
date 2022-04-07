@@ -12,7 +12,8 @@ async function maintainReputation1(){
         // create merkle tree with poseidon hash function
         const tree = buildMerkleTree(reputation1Holders)
         console.log("New root:",tree.root)
-        // console.log("Tree:", tree.toString())
+
+        // update merkle root in smart contract
     } catch (error) {
         console.log(error)
     }
