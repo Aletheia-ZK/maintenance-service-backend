@@ -8,7 +8,10 @@
   },
   "dependencies": {
     "axios": "^0.26.1",
-    "dotenv": "^16.0.0"
+    "circomlibjs": "^0.1.2",
+    "dotenv": "^16.0.0",
+    "ethers": "^5.6.2",
+    "fixed-merkle-tree": "^0.7.3"
   },
   "devDependencies": {
     "@types/node": "^17.0.23",
