@@ -16,7 +16,7 @@ export type TokenData = {
 	supports_erc: any,
 	logo_url: string
 	type: string,
-	nft_data: NFTData
+	nft_data: [NFTData]
 }
 
 type NFTData = {
