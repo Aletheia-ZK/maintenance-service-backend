@@ -1,3 +1,4 @@
+import { getContractFactory } from '@nomiclabs/hardhat-ethers/types'
 import dotenv from 'dotenv'
 dotenv.config({ path: `.env.${process.env.NODE_ENV}` })
 import { getTokenIDsFromContract, getInfoForTokenID } from '../api'
@@ -23,3 +24,4 @@ export async function getReputationHolders(): Promise<string[]> {
 
 	return reputationHolders
 }
+
