@@ -12,6 +12,11 @@ async function main() {
     // If this script is run directly using `node` you may want to call compile
     // manually to make sure everything is compiled
     // await hre.run('compile');
+    const [deployer] = await hre.ethers.getSigners()
+
+    console.log('Deploying contracts with the account:', deployer.address)
+
+    console.log('Account balance:', (await deployer.getBalance()).toString())
 
     // We get the contract to deploy
     const Athletia = await hre.ethers.getContractFactory('Athletia')
@@ -19,7 +24,7 @@ async function main() {
 
     await athletia.deployed()
 
-    console.log('Athletia deployed to:', greeter.address)
+    console.log('Athletia deployed to:', athletia.address)
 }
 
 // We recommend this pattern to be able to use async/await everywhere

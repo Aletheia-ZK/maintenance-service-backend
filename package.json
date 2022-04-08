@@ -6,9 +6,12 @@
   "license": "MIT",
   "scripts": {
     "start": "NODE_ENV=development ts-node ./src/index.ts",
-    "compile": "NODE_ENV=development npx hardhat compile"
+    "compile": "NODE_ENV=development npx hardhat compile",
+    "deploy": "NODE_ENV=development npx hardhat run scripts/deploy.js --network testnet",
+    "node": "NODE_ENV=development npx hardhat node"
   },
   "dependencies": {
+    "@nomiclabs/hardhat-ethers": "^2.0.5",
     "@openzeppelin/contracts": "^4.5.0",
     "axios": "^0.26.1",
     "circomlibjs": "^0.1.2",
