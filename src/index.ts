@@ -1,5 +1,5 @@
 import { getReputationHolders } from './reputations/reputation1'
-import { buildMerkleTree, updateRoot } from './treeHelperFunctions'
+import { buildMerkleTree, updateRoot } from './attestationUtils'
 import { createClient } from 'redis'
 
 async function maintainReputation1(client: any) {

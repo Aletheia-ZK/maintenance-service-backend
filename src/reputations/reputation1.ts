@@ -14,6 +14,7 @@ export async function getReputationHolders(): Promise<string[]> {
     const tokensMetaInfo: TokenData[] = []
 
     for (const t of existingTokenIds) {
+        // console.log('Token: ', t)
         const tokenMetaInfo = await getInfoForTokenID(
             contractAddress,
             t.token_id
