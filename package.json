@@ -5,12 +5,15 @@
     "main": "index.js",
     "license": "MIT",
     "scripts": {
-        "start": "NODE_ENV=development ts-node ./src/index.ts",
+        "build": "tsc -p .",
+        "start": "NODE_ENV=development node dist/index.js",
+        "dev": "NODE_ENV=development nodemon src/index.ts",
         "compile": "NODE_ENV=development npx hardhat compile",
         "deploy": "NODE_ENV=development npx hardhat run scripts/deploy.mjs --network testnet",
         "node": "NODE_ENV=development npx hardhat node"
     },
     "dependencies": {
+        "@ethersproject/experimental": "^5.6.0",
         "@nomiclabs/hardhat-ethers": "^2.0.5",
         "@openzeppelin/contracts": "^4.5.0",
         "@zk-kit/incremental-merkle-tree": "^0.4.3",
@@ -20,6 +23,7 @@
         "circomlibjs": "0.0.8",
         "dotenv": "^16.0.0",
         "ethers": "^5.6.2",
+        "nodemon": "^2.0.16",
         "redis": "^4.0.6",
         "yarn": "^1.22.18"
     },

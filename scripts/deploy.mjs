@@ -23,32 +23,34 @@ async function main() {
     console.log('Account balance:', (await deployer.getBalance()).toString())
 
     // import "@zk-kit/incremental-merkle-tree.sol/contracts/IncrementalBinaryTree.sol
-    const LibraryPoseidon = await hre.ethers.getContractFactory('PoseidonT3')
-    const libraryPoseidonDeployed = await LibraryPoseidon.deploy()
-    await libraryPoseidonDeployed.deployed()
+    // const LibraryPoseidon = await hre.ethers.getContractFactory('PoseidonT3')
+    // const libraryPoseidonDeployed = await LibraryPoseidon.deploy()
+    // await libraryPoseidonDeployed.deployed()
 
-    const LibraryBT = await hre.ethers.getContractFactory(
-        'IncrementalBinaryTree',
-        {
-            libraries: {
-                PoseidonT3: libraryPoseidonDeployed.address,
-            },
-        }
-    )
-    const libraryBTDeployed = await LibraryBT.deploy()
-    await libraryBTDeployed.deployed()
+    // const LibraryBT = await hre.ethers.getContractFactory(
+    //     'IncrementalBinaryTree',
+    //     {
+    //         libraries: {
+    //             PoseidonT3: libraryPoseidonDeployed.address,
+    //         },
+    //     }
+    // )
+    // const libraryBTDeployed = await LibraryBT.deploy()
+    // await libraryBTDeployed.deployed()
 
-    // We get the contract to deploy
-    const Aletheia = await hre.ethers.getContractFactory('Aletheia', {
-        libraries: {
-            IncrementalBinaryTree: libraryBTDeployed.address,
-        },
-    })
-
+    // // We get the contract to deploy
+    // const Aletheia = await hre.ethers.getContractFactory('Aletheia', {
+    //     libraries: {
+    //         IncrementalBinaryTree: libraryBTDeployed.address,
+    //     },
+    // })
+    const Aletheia = await hre.ethers.getContractFactory('Aletheia')
     const aletheia = await Aletheia.deploy()
     await aletheia.deployed()
 
     console.log('Aletheia deployed to:', aletheia.address)
+    // console.log('Poseidon deployed to:', libraryPoseidonDeployed.address)
+    // console.log('IncrementalMerkleTree deployed to:', libraryBTDeployed.address)
 }
 
 // We recommend this pattern to be able to use async/await everywhere

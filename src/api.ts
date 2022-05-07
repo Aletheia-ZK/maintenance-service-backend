@@ -44,3 +44,29 @@ export async function getInfoForTokenID(
         throw error
     }
 }
+
+export async function getTransactionsFromContract(
+    contractAddress: string,
+    pageSize: number,
+    pageNumber: number
+) {
+    try {
+        const params = new URLSearchParams()
+        params.append('quote-currency', 'USD')
+        params.append('format', 'JSON')
+        params.append('block-signed-at-asc', 'false')
+        params.append('no-logs', 'false')
+        params.append('page-size', pageSize.toString())
+        params.append('page-number', pageNumber.toString())
+        params.append('key', apiKey)
+
+        const response = await axios.get(
+            `https://api.covalenthq.com/v1/${chainID}/address/${contractAddress}/transactions_v2/`,
+            { params }
+        )
+        return response.data.data.items
+    } catch (error) {
+        // console.log(error)
+        throw error
+    }
+}

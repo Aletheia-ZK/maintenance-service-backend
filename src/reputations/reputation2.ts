@@ -8,7 +8,7 @@ import { TokenData, TokenMetaData } from '../types'
 // Covalent API gives reliant results after 10 mins on Harmony
 
 export async function getReputationHolders(): Promise<string[]> {
-    const contractAddress = process.env.NFT_1_CONTRACT_ADDRESS!
+    const contractAddress = process.env.NFT_2_CONTRACT_ADDRESS!
     const existingTokenIds = await getTokenIDsFromContract(contractAddress)
     const tokensMetaInfo: TokenData[] = []
 
