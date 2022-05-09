@@ -1,6 +1,5 @@
 {
-    "name": "reputation_update_service",
-    "module": "commonjs",
+    "name": "maintenance_service",
     "version": "1.0.0",
     "main": "index.js",
     "license": "MIT",
