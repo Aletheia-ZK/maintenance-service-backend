@@ -145,10 +145,6 @@ export async function getAllCurrentRegisteredIdentities() {
     const txs = await getAllTransactionsFromContract(ALETHEIA_CONTRACT_ADDRESS)
     const decodedTxs = await decodeEventData(txs)
 
-    // const TxAttestationRootChanged = decodedTxs.filter((tx: any) => {
-    //     return tx['decoded_events']['name'] == 'AttestationRootChanged'
-    // })
-
     const membersAdded = decodedTxs
         .filter((tx: any) => {
             return tx['decoded_events']['name'] == 'MemberAdded'
@@ -162,30 +158,4 @@ export async function getAllCurrentRegisteredIdentities() {
     // })
 
     return membersAdded
-
-    // console.log(
-    //     'identityCommitment: ',
-    //     membersAdded[0]['decoded_events']['args'][
-    //         'identityCommitment'
-    //     ].toString()
-    // )
-
-    //     eturn options.filter(function(option){
-    //         return !option.assigned;
-    //     }).map(function (option) {
-    //         return (someNewObject);
-    //     });
-    // }
-
-    // txs.map((tx: any) => {
-    //     const log_events = tx['log_events'][0]
-    //     const decoded_event = iface.parseLog({
-    //         topics: log_events['raw_log_topics'],
-    //         data: log_events['raw_log_data'],
-    //     })
-
-    //     return {
-    //         ...tx,
-    //         decoded_events: decoded_event,
-    //     }
 }

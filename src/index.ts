@@ -25,25 +25,10 @@ async function maintainReputation1(client: any) {
         console.log('New root: ', tree.root.toString())
         updateRoot('reputation_1', tree.root.toString())
 
-        // console.log('Tree leaves: ', JSON.stringify(tree.leaves))
-
         // update values in redis
         // console.log('Update values in Redis')
         await client.set('attestation_1_leaves', JSON.stringify(tree.leaves))
         await client.set('attestation_1_root', tree.root)
-
-        // update values in mongodb
-        // reputations.updateOne(
-        //     { name: 'reputation_1' },
-        //     {
-        //         name: 'reputation_1',
-        //         root: tree.root,
-        //         leaves: JSON.stringify(tree.leaves),
-        //     },
-        //     {
-        //         upsert: true,
-        //     }
-        // )
     } catch (error) {
         console.log(error)
     }
@@ -86,43 +71,6 @@ async function maintainIdentities(client: any) {
     await client.set('identity_leaves', JSON.stringify(identityTree.leaves))
     await client.set('identity_root', identityTree.root)
 }
-
-// async function maintainIdentities(db: any) {
-//     const identities = db.collection('identities')
-//     console.log('Check for updates in identity tree in smart contract')
-
-// try {
-//     // get pub addresses of everybody who fulfills reputation 1
-//     const reputation1Holders = await getReputationHolders()
-//     console.log('Number of reputation 1 users: ', reputation1Holders.length)
-
-//     // create merkle tree with poseidon hash function
-//     const tree = buildMerkleTree(reputation1Holders)
-//     console.log('New root:', tree.root)
-
-//     // update root in smart contract
-//     console.log('Update root in contract')
-//     console.log('New root: ', tree.root.toString())
-//     updateRoot('reputation_1', tree.root.toString())
-
-//     console.log('Tree leaves: ', JSON.stringify(tree.leaves))
-
-//     // update values in mongodb
-//     reputations.updateOne(
-//         { name: 'reputation_1' },
-//         {
-//             name: 'reputation_1',
-//             root: tree.root,
-//             leaves: JSON.stringify(tree.leaves),
-//         },
-//         {
-//             upsert: true,
-//         }
-//     )
-// } catch (error) {
-//     console.log(error)
-// }
-// }
 
 async function updateMaintainanceTimestamp(client: any) {
     const date = new Date()
