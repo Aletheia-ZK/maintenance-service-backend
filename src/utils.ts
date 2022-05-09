@@ -8,9 +8,7 @@ import { getTransactionsFromContract } from './api'
 
 import aletheiaArtifact from '../artifacts/contracts/Aletheia.sol/Aletheia.json'
 
-const ATTESTATION_MERKLE_TREE_HEIGHT = parseInt(
-    process.env.ATTESTATION_MERKLE_TREE_HEIGHT!
-)
+const MERKLE_TREE_HEIGHT = parseInt(process.env.MERKLE_TREE_HEIGHT!)
 const ALETHEIA_CONTRACT_ADDRESS = process.env.ALETHEIA_CONTRACT_ADDRESS!
 const PROVIDER_URL = process.env.PROVIDER_URL!
 
@@ -21,12 +19,7 @@ initNonce()
 
 export function buildMerkleTree(addresses: string[]) {
     const leaves = addresses
-    const tree = new IncrementalMerkleTree(
-        poseidon,
-        ATTESTATION_MERKLE_TREE_HEIGHT,
-        0,
-        2
-    )
+    const tree = new IncrementalMerkleTree(poseidon, MERKLE_TREE_HEIGHT, 0, 2)
 
     for (const leaf of leaves) {
         tree.insert(leaf)

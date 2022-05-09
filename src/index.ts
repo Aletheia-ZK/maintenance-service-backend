@@ -9,6 +9,8 @@ import dotenv from 'dotenv'
 import { createClient } from 'redis'
 dotenv.config({ path: `.env.${process.env.NODE_ENV}` })
 
+const REDIS_URL = process.env.REDIS_URL
+
 async function maintainReputation1(client: any) {
     console.log('Check for updates on reputation 1 merkle tree...')
     try {
@@ -82,7 +84,7 @@ async function updateMaintainanceTimestamp(client: any) {
 }
 
 async function main() {
-    const client = createClient()
+    const client = createClient({ url: REDIS_URL })
     client.on('error', (err) => console.log('Redis Client Error', err))
     await client.connect()
     console.log('Redis client connected succesfully.')
