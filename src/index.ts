@@ -69,9 +69,12 @@ async function maintainIdentities(client: any) {
 
     console.log('Update identity tree: ')
     console.log(identityTree.root)
-    console.log(JSON.stringify(identityTree.leaves))
+    if (identityTree.leaves.length > 0) {
+        await client.set('identity_leaves', JSON.stringify(identityTree.leaves))
+    } else {
+        await client.set('identity_leaves', JSON.stringify(''))
+    }
 
-    await client.set('identity_leaves', JSON.stringify(identityTree.leaves))
     await client.set('identity_root', identityTree.root)
 }
 
