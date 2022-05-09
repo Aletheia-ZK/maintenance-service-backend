@@ -10,6 +10,7 @@ import { createClient } from 'redis'
 dotenv.config({ path: `.env.${process.env.NODE_ENV}` })
 
 const REDIS_URL = process.env.REDIS_URL
+const UPDATE_FREQUENCY = parseInt(process.env.UPDATE_FREQUENCY!)
 
 async function maintainReputation1(client: any) {
     console.log('Check for updates on reputation 1 merkle tree...')
@@ -30,7 +31,7 @@ async function maintainReputation1(client: any) {
         // update values in redis
         // console.log('Update values in Redis')
         await client.set('attestation_1_leaves', JSON.stringify(tree.leaves))
-        await client.set('attestation_1_root', tree.root)
+        await client.set('attestation_1_root', tree.root.toString())
     } catch (error) {
         console.log(error)
     }
@@ -57,7 +58,7 @@ async function maintainReputation2(client: any) {
         // update values in redis
         // console.log('Update values in Redis')
         await client.set('attestation_2_leaves', JSON.stringify(tree.leaves))
-        await client.set('attestation_2_root', tree.root)
+        await client.set('attestation_2_root', tree.root.toString())
     } catch (error) {
         console.log(error)
     }
@@ -69,19 +70,9 @@ async function maintainIdentities(client: any) {
 
     console.log('Update identity tree: ')
     console.log(identityTree.root)
-    // if (identityTree.leaves.length > 0) {
-    //     await client.set('identity_leaves', JSON.stringify(identityTree.leaves))
-    // } else {
-    //     await client.set('identity_leaves', JSON.stringify(''))
-    // }
 
-    console.log('test 1')
-    await client.set('test', JSON.stringify([]))
-    console.log('test 2')
-    await client.set('test', JSON.stringify(''))
-    console.log('test end')
-
-    await client.set('identity_root', identityTree.root)
+    await client.set('identity_leaves', JSON.stringify(identityTree.leaves))
+    await client.set('identity_root', identityTree.root.toString())
 }
 
 async function updateMaintainanceTimestamp(client: any) {
@@ -104,7 +95,7 @@ async function main() {
         maintainReputation2(client)
         maintainIdentities(client)
         updateMaintainanceTimestamp(client)
-    }, 30000)
+    }, UPDATE_FREQUENCY)
 }
 
 main()
